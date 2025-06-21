@@ -56,7 +56,7 @@ except Exception as e:
 
 # Handle page selections
 if selected == "Home":
-    st.title("GameSage: Play the game beyond the game")
+    st.title("GameSage: Sports Strategy Meets Machine Learning Built for the franchise sports domain. Powered by data. Refined by AI. Delivered in real time.")
     # Add home content here
 
 elif selected == "Geospatial":
