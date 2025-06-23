@@ -1,4 +1,8 @@
-
+# =========================================================
+# GameSage Analytics – FULL Streamlit script
+# Adds a looping arrow animation in front of each bullet on
+# the Home page (no JSONDecodeError, no other logic touched)
+# =========================================================
 
 # ---------- 1. Imports ----------
 import streamlit as st
@@ -521,20 +525,13 @@ elif selected == "Summary":
     
     st.subheader("Found Blind Spots")
     with st.container():
-        with st.expander(" A smart system that uses computer vision to finds spots in the stadium where ads are not clearly visible and helps sponsors to get the blind spots", expanded=False):
-            st.markdown("""
-Frame Extraction:
-We made a custom code to pull out clear and different camera angle images from full IPL match videos.
-
-Data Annotation:
-We labeled about 100 high-quality images, marking areas like front banners, back banners, cushions, and different types of seats where ads appear or could appear.
-
-Model Training (YOLOv8):
-We used a popular object detection model called YOLOv8 and trained it to spot and identify different sponsor zones in the images.
-
-Augmentation & Preprocessing:
-We improved the model by using techniques like rotating images or changing brightness, so it works well even in different lighting or camera views.
-""")
+        with st.expander(" A smart system that uses computer vision to finds spots in the stadium where ads are not clearly visible and helps sponsors to get the blind spots", expanded=True):
+            st.image(
+        "diagram-export-6-23-2025-4_21_53-PM.png",               
+        use_column_width=True,                      
+        caption="Blind-spot detection workflow"
+    )  
+          
 
     st.subheader("Fairplay Moments Detection")
     with st.container():
@@ -637,3 +634,7 @@ Event promotions (all zones useful)
 Created an Interactive Map
 Made a colorful map showing all zones, with different sizes and colors based on fan count and precision level.
 """)
+
+# =========================================================
+# End of script
+# =========================================================
