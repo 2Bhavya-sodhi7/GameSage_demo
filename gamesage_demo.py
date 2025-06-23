@@ -134,7 +134,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            What We Bring  <span style='color:red;'>⇓</span>
+            What We Offer  <span style='color:red;'>⇓</span>
          </h1>
          """,
         unsafe_allow_html=True  
@@ -143,7 +143,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Predictive Analysis of Sponsor Engagement & ROI Using Machine Learning and Computer Vision:  
+            <span style='color:red;'>►</span> Analysis of Sponsor Engagement & ROI Using Machine Learning and Computer Vision 
          </h1>
          """,
         unsafe_allow_html=True  
@@ -152,7 +152,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Identifying Blind Spots in Sponsor Visibility During Broadcasts:  
+            <span style='color:red;'>►</span> Identifying Blind Spots in Sponsor Visibility During Broadcasts
          </h1>
          """,
         unsafe_allow_html=True  
@@ -161,7 +161,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Geospatial Tagging Of Fans:  
+            <span style='color:red;'>►</span> Geospatial Tagging Of Fans
          </h1>
          """,
         unsafe_allow_html=True  
@@ -170,14 +170,21 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Detecting Sponsor Logo Visibility During Peak Crowd Moments in IPL Videos Using Audio and Computer Vision:  
+            <span style='color:red;'>►</span> Detecting Sponsor Logo Visibility During Peak Crowd Moments in IPL Videos by Conducting Audio Analysis and Using Computer Vision
          </h1>
          """,
         unsafe_allow_html=True  
     )   
 
 
-
+    st.markdown(
+        """
+        <h1 style='font-size: 1.5em; font-weight: bold;'>
+            <span style='color:red;'>►</span> Recommendations for Achieving Better ROI for Sponsors Through Predictive Mechanisms.
+         </h1>
+         """,
+        unsafe_allow_html=True  
+    )   
 
 
 
