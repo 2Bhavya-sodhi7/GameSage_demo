@@ -528,7 +528,7 @@ elif selected == "Summary":
         with st.expander(" A smart system that uses computer vision to finds spots in the stadium where ads are not clearly visible and helps sponsors to get the blind spots", expanded=True):
             st.image(
         "diagram-export-6-23-2025-4_21_53-PM.png",               
-        use_column_width=True,                      
+        use_container_width=True,                      
         caption="Blind-spot detection workflow"
     )  
           
