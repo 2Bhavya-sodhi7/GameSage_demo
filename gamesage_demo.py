@@ -1,8 +1,4 @@
-# =========================================================
-# GameSage Analytics – FULL Streamlit script
-# Adds a looping arrow animation in front of each bullet on
-# the Home page (no JSONDecodeError, no other logic touched)
-# =========================================================
+
 
 # ---------- 1. Imports ----------
 import streamlit as st
@@ -124,7 +120,7 @@ except Exception as e:
 if selected == "Home":
     st.markdown(
     """
-    <h1 style='font-size: 2.5em; font-weight: bold;'>
+    <h1 style='font-size: 2.3em; font-weight: bold;'>
         GameSage : <span style='color:red;'>Maximizing</span> Sponsor's <span style='color:red;'>ROI</span> in Franchise Cricket
     </h1>
     """,
@@ -133,7 +129,7 @@ if selected == "Home":
     
     st.markdown(
         """
-        <h1 style='font-size: 1.9em; font-weight: bold;'>
+        <h1 style='font-size: 1.5em; font-weight: bold;'>
             What We Bring  <span style='color:red;'>⇓</span>
          </h1>
          """,
@@ -142,8 +138,8 @@ if selected == "Home":
 
     st.markdown(
         """
-        <h1 style='font-size: 1.9em; font-weight: bold;'>
-            <span style='color:red;'>⌘</span> Predictive Analysis of Sponsor Engagement & ROI Using Machine Learning and Computer Vision:  
+        <h1 style='font-size: 1.5em; font-weight: bold;'>
+            <span style='color:red;'>►</span> Predictive Analysis of Sponsor Engagement & ROI Using Machine Learning and Computer Vision:  
          </h1>
          """,
         unsafe_allow_html=True  
@@ -151,8 +147,8 @@ if selected == "Home":
     
     st.markdown(
         """
-        <h1 style='font-size: 1.9em; font-weight: bold;'>
-            <span style='color:red;'>⌘</span> Identifying Blind Spots in Sponsor Visibility During Broadcasts:  
+        <h1 style='font-size: 1.5em; font-weight: bold;'>
+            <span style='color:red;'>►</span> Identifying Blind Spots in Sponsor Visibility During Broadcasts:  
          </h1>
          """,
         unsafe_allow_html=True  
@@ -160,8 +156,8 @@ if selected == "Home":
 
     st.markdown(
         """
-        <h1 style='font-size: 1.9em; font-weight: bold;'>
-            <span style='color:red;'>⌘</span> Geospatial Tagging Of Fans:  
+        <h1 style='font-size: 1.5em; font-weight: bold;'>
+            <span style='color:red;'>►</span> Geospatial Tagging Of Fans:  
          </h1>
          """,
         unsafe_allow_html=True  
@@ -169,8 +165,8 @@ if selected == "Home":
 
     st.markdown(
         """
-        <h1 style='font-size: 1.9em; font-weight: bold;'>
-            <span style='color:red;'>⌘</span> Detecting Sponsor Logo Visibility During Peak Crowd Moments in IPL Videos Using Audio and Computer Vision:  
+        <h1 style='font-size: 1.5em; font-weight: bold;'>
+            <span style='color:red;'>►</span> Detecting Sponsor Logo Visibility During Peak Crowd Moments in IPL Videos Using Audio and Computer Vision:  
          </h1>
          """,
         unsafe_allow_html=True  
@@ -641,7 +637,3 @@ Event promotions (all zones useful)
 Created an Interactive Map
 Made a colorful map showing all zones, with different sizes and colors based on fan count and precision level.
 """)
-
-# =========================================================
-# End of script
-# =========================================================
