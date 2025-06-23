@@ -19,6 +19,22 @@ from textblob import TextBlob
 from matplotlib.patches import Wedge
 import matplotlib.patches as patches
 
+
+# ---------- 1A.  Password flag ----------
+if "dataset_auth" not in st.session_state:
+    st.session_state.dataset_auth = False  
+def safe_rerun():
+    
+    if hasattr(st, "rerun"):
+        st.rerun()
+    
+    elif hasattr(st, "experimental_rerun"):
+        st.experimental_rerun()
+    
+    else:
+        st.info("Unlocked! Try refreshing the page ")
+
+
 # NEW – Lottie support
 from streamlit_lottie import st_lottie
 import json, requests
@@ -106,11 +122,70 @@ except Exception as e:
 # 6. Page routing
 # =========================================================
 if selected == "Home":
-    st.title("GameSage: Sports Strategy Meets Machine Learning")
+    st.markdown(
+    """
+    <h1 style='font-size: 2.5em; font-weight: bold;'>
+        GameSage : <span style='color:red;'>Maximizing</span> Sponsor's <span style='color:red;'>ROI</span> in Franchise Cricket
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
+    
+    st.markdown(
+        """
+        <h1 style='font-size: 1.9em; font-weight: bold;'>
+            What We Bring  <span style='color:red;'>⇓</span>
+         </h1>
+         """,
+        unsafe_allow_html=True  
+    )   
 
-    bullet("Built for the franchise sports domain.")
-    bullet("Powered by data. Refined by AI.")
-    bullet("Delivered in real time.")
+    st.markdown(
+        """
+        <h1 style='font-size: 1.9em; font-weight: bold;'>
+            <span style='color:red;'>⌘</span> Predictive Analysis of Sponsor Engagement & ROI Using Machine Learning and Computer Vision:  
+         </h1>
+         """,
+        unsafe_allow_html=True  
+    )             
+    
+    st.markdown(
+        """
+        <h1 style='font-size: 1.9em; font-weight: bold;'>
+            <span style='color:red;'>⌘</span> Identifying Blind Spots in Sponsor Visibility During Broadcasts:  
+         </h1>
+         """,
+        unsafe_allow_html=True  
+    )   
+
+    st.markdown(
+        """
+        <h1 style='font-size: 1.9em; font-weight: bold;'>
+            <span style='color:red;'>⌘</span> Geospatial Tagging Of Fans:  
+         </h1>
+         """,
+        unsafe_allow_html=True  
+    )   
+
+    st.markdown(
+        """
+        <h1 style='font-size: 1.9em; font-weight: bold;'>
+            <span style='color:red;'>⌘</span> Detecting Sponsor Logo Visibility During Peak Crowd Moments in IPL Videos Using Audio and Computer Vision:  
+         </h1>
+         """,
+        unsafe_allow_html=True  
+    )   
+
+
+
+
+
+
+
+
+    
+
+    
 
 # ------------------ Geospatial ------------------
 elif selected == "Geospatial":
@@ -347,7 +422,18 @@ This chart and heatmap shows how often different cricket shot directions were pl
 
 # ------------------- Dataset --------------------
 elif selected == "Dataset":
-    st.title("Here are some of the datasets we created:")
+    # ---------- 2A. Password check ----------
+    if not st.session_state.dataset_auth:
+        st.subheader("🔒  Protected Section")
+        pwd = st.text_input("Enter dataset password", type="password")
+        if st.button("Unlock"):
+            if pwd == "gamesage123":          # <-- apna secret rakhna
+                st.session_state.dataset_auth = True
+                safe_rerun()
+                      # refresh to show content
+            else:
+                st.error("Wrong password, try again.")
+        st.stop()
 
     # ek chhota icon + text ka 2-column layout
     col_icon, col_text = st.columns([2, 4])
