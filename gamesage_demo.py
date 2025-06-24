@@ -18,8 +18,9 @@ from wordcloud import WordCloud
 from textblob import TextBlob
 from matplotlib.patches import Wedge
 import matplotlib.patches as patches
-
-
+base_theme = st.get_option("theme.base")
+TEXT_COLOR = "#FFFFFF" if base_theme == "dark" else "#FFFFFF"
+ICON_COLOR = "#FFFFFF" if base_theme == "dark" else "#FFFFFF"
 # ---------- 1A.  Password flag ----------
 if "dataset_auth" not in st.session_state:
     st.session_state.dataset_auth = False  
@@ -77,22 +78,29 @@ def bullet(text: str):
     with col_txt:
         st.subheader(text)
 
-# ---------- 3. Menu styling ----------
+
+
+
+
+
 menu_styles = {
     "container": {
         "padding": "0!important",
-        "background-color": "#0e1117",
+        "background-color": "#0e1117",     
         "overflow-x": "auto"
     },
     "nav-link": {
         "font-size": "16px",
         "white-space": "nowrap",
-        "padding": "6px 14px"
+        "padding": "6px 14px",
+        "color": TEXT_COLOR              
     },
-    "icon": {"font-size": "18px"},
-    "nav-link-selected": {"background-color": "#b31010"}
+    "icon": {"font-size": "18px", "color": ICON_COLOR},
+    "nav-link-selected": {
+        "background-color": "#b31010",
+        "color": TEXT_COLOR               
+    }
 }
-
 # ---------- 4. Navigation ----------
 selected = option_menu(
     menu_title="GameSage Analytics",
@@ -100,7 +108,33 @@ selected = option_menu(
     icons=["house", "geo-alt", "bar-chart", "database-add", "file-earmark-richtext"],
     default_index=0,
     orientation="horizontal",
-    styles=menu_styles
+    styles={           # normal nav colours
+        "container": {"background-color": "#0e1117", "padding": "0!important"},
+        "nav-link":   {"color": "#FFFFFF", "font-size": "16px"},
+        "icon":       {"color": "#FFFFFF"},
+        "menu_title": {"color": "#FFFFFF"},
+        "nav-link-selected": {"background-color": "#b31010", "color": "#FFFFFF"},
+    }
+)
+
+st.markdown(
+    """
+    <style>
+    /* Force menu_title (navbar-brand) text to be white */
+    .navbar .navbar-brand {
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+    }
+
+    /* Optional: improve alignment and spacing */
+    .navbar {
+        padding-left: 16px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 
 # ---------- 5. Data loading ----------
@@ -443,21 +477,12 @@ elif selected == "Dataset":
         st.stop()
 
     # ek chhota icon + text ka 2-column layout
-    col_icon, col_text = st.columns([2, 4])
-    with col_icon:
-        st_lottie(
-        DATASET_ANIM,
-        height=230,          # pehle 140 tha
-        width=230,
-        quality="high",      # crisp lines & anti-aliasing
-        loop=True,
-        key="dataset_anim"
-    )
+    st.title("Here are some sample of the datasets that we created: ")
 
 
-    with col_text:
-        with st.expander("IPL 2024 Tweets Dataset", expanded=True):
-            st.markdown("""
+    
+    with st.expander("IPL 2024 Tweets Dataset", expanded=True):
+        st.markdown("""
 This dataset has thousands of tweets. It includes details like the tweet text, number of likes, retweets, views columns  you can quickly understand how people feel about the matches, how much attention each tweet got, and which players or teams were talked about the most.
 """)
     
@@ -498,7 +523,7 @@ This dataset has thousands of tweets. It includes details like the tweet text, n
     df2["time_rounded"] = df2["tweet_created_at"].dt.floor("T")  
 
     with st.container():
-        with st.expander("Broadcast Audio-Peak / Sponsor Dataset", expanded=False):
+        with st.expander("Broadcast Audio-Peak / Sponsor Dataset", expanded=True):
             st.markdown("""
 Frame-level audio-peak scores plus visible sponsors during peak moments.
 Perfect for correlating brand exposure with crowd reaction.
@@ -506,23 +531,24 @@ Perfect for correlating brand exposure with crowd reaction.
         st.dataframe(audio_df, use_container_width=True)
 
     with st.container():
-        with st.expander("sponsor_detection(1)", expanded=False):
+        with st.expander("sponsor_detection(1)", expanded=True):
             st.markdown("""
 This dataset has detailed info about sponsors seen matches, like match name, sponsor, and where it appeared on screen.It helps find which brands showed up most, where visibility was poor.
 """)
         st.dataframe(sponsor_df, use_container_width=True)
 
     with st.container():
-        with st.expander("Ball-by-Ball Data (RCB VS PBKS FINAL 2025)", expanded=False):
+        with st.expander("Ball-by-Ball Data (RCB VS PBKS FINAL 2025)", expanded=True):
             st.markdown("""
 This dataset has details of every ball like over, runs, bowler, batsman, and most importantly, shot direction. Using this, we can make charts and heatmaps to see where most shots go and plan ads placement better.
 """)
         st.dataframe(df1, use_container_width=True)
 
     with st.container():
-        with st.expander("Stadium Boundary Size", expanded=False):
+        with st.expander("Stadium Boundary Size", expanded=True):
             st.markdown("""
 This dataset shows clear numbers about stadium sizes, like how long the boundaries are. It helps brands understand the physical space so they can compare stadiums and plan where to put their ads to get the most attention.
+                        (NOTE! This Boundaries are measured from center)
 """)
         st.dataframe(df3, use_container_width=True)
 
@@ -533,37 +559,14 @@ elif selected == "Summary":
     st.subheader("Found Blind Spots")
     with st.container():
         with st.expander(" A smart system that uses computer vision to finds spots in the stadium where ads are not clearly visible and helps sponsors to get the blind spots", expanded=True):
-            st.image(
-        "diagram-export-6-23-2025-4_21_53-PM.png",               
-        use_container_width=True,                      
-        caption="Blind-spot detection workflow"
-    )  
+            img = Image.open("Screenshot 2025-06-24 081252.png")
+            st.image(img, width=img.width)
           
-
     st.subheader("Fairplay Moments Detection")
     with st.container():
-        with st.expander("We made a system that can spot good sportsmanship moments in cricket, like handshakes or helping another player. These moments are useful for sponsors to show their ads in a positive light.", expanded=False):
-            st.markdown("""
-1. Pose Detection:
-We used a tool called YOLOv8 to find body points (like head, arms, legs) from images taken from cricket matches.
-
-2. Dataset Creation:
-We collected and labeled 52 images:
-
-10 handshakes
-
-11 hugs
-
-10 helping moments (like tying shoelaces)
-
-21 normal (non-fairplay) moments
-
-3. Feature Extraction:
-From these images, we got 34 body keypoints per person (like joints' X and Y positions).
-
-4. Model Training:
-We used a Random Forest model to learn from these body positions and guess if the moment is fairplay or not.
-""")
+        with st.expander("We made a system that can spot good sportsmanship moments in cricket, like handshakes or helping another player. These moments are useful for sponsors to show their ads in a positive light.", expanded=True):
+            img = Image.open("Screenshot_4K (2).png")
+            st.image(img, width=img.width)
             
     st.subheader("Fan Engagement Peak Detection")
     with st.container():
