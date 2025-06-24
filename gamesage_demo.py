@@ -663,46 +663,15 @@ elif selected == "Summary":
             
     st.subheader("Fan Engagement Peak Detection")
     with st.container():
-        with st.expander("We used an existing system to detect the most exciting moments in cricket match videos by analyzing crowd sounds.", expanded=False):
-            st.markdown("""
-1. Audio Extraction:
-We used MoviePy to pull the sound from a match video and save it as an audio file.
+        with st.expander("We used an existing system to detect the most exciting moments in cricket match videos by analyzing crowd sounds.", expanded=True):
+            img = Image.open("final_audio_map.png")
+            st.image(img, width=img.width)
 
-2. Sound Detection with YAMNet:
-We used a pre-trained model called YAMNet to listen to short pieces of the audio and figure out what kind of sound is happening—like cheering, clapping, or crowd noise.
-
-3. Engagement Scoring:
-We focused only on sounds that show fan excitement. We gave each moment a score based on how loud or exciting the crowd sounded.
-
-4. Finding Exciting Moments:
-We used a method to detect where these excitement scores suddenly peak, which usually matches moments like boundaries or wickets.
-
-5. Visualizing Peaks:
-We plotted a graph to show excitement levels over time and marked the peaks with red dots. These peaks can be linked back to the video to know exactly when exciting moments happened.
-""")
-
-    st.subheader("Sponsor Detection From Video Frames")
+    st.subheader("Sponsor Detection From Images And Video Frames")
     with st.container():
-        with st.expander("We found the most exciting moments in IPL match videos using crowd sounds, then used computer vision to detect which sponsors appeared on screen during those moments. This helps brands understand where their logos are seen when fans are most engaged.", expanded=False):
-            st.markdown("""
-1: Collected Media
-We collected photos from the IPL website and videos from various online platforms.
-
-2: Detected Exciting Moments
-We used a model called YAMNet to listen for sounds like cheering, clapping, or shouting and find the moments when fan excitement was highest.
-
-3: Captured Key Frames
-We took snapshots from the video at those exciting moments.
-
-4: Labeled Sponsor Images
-We labeled over 500 sponsor images  to train the model.
-
-5: Trained YOLOv8 Model
-We trained a YOLOv8 model to recognize sponsors in the images.
-
-6: Detected Sponsors in Exciting Moments
-We used the trained model to find sponsor logos in the most exciting frames.
-""")
+        with st.expander("We found the most exciting moments in IPL match videos using crowd sounds, then used computer vision to detect which sponsors appeared on screen during those moments. This helps brands understand where their logos are seen when fans are most engaged.", expanded=True):
+            img = Image.open("final_sponsor_detection_map.png")
+            st.image(img, width=img.width)
             
     st.subheader("Geospatial analysis of Fan Engagement")
     with st.container():
