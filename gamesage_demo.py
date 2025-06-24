@@ -559,9 +559,102 @@ elif selected == "Summary":
     st.subheader("Found Blind Spots")
     with st.container():
         with st.expander(" A smart system that uses computer vision to finds spots in the stadium where ads are not clearly visible and helps sponsors to get the blind spots", expanded=True):
-            img = Image.open("Screenshot 2025-06-24 081252.png")
+            img = Image.open("Final_blind_spots.png")
             st.image(img, width=img.width)
-          
+
+            # Load your images
+# Make sure these files are in the correct path relative to your script
+            image1 = Image.open("frame_13_47s.jpg")
+            image2 = Image.open("frame_66_256s.jpg")
+
+# Create two columns
+            col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+            with col1:
+                st.image(image1, caption="Extracted Frames", use_container_width=True)
+
+# Display the second image in the second column
+            with col2:
+                 st.image(image2, caption="Extracted Frames", use_container_width=True)
+
+
+            image3 = Image.open("frame_17_64s.jpg")
+            image4 = Image.open("frame_18_68s.jpg")
+
+# Create two columns
+            col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+        with col1:
+         st.image(image3, caption="Used Multiple Angles", use_container_width=True)
+
+# Display the second image in the second column
+        with col2:
+         st.image(image4, caption="Used Multiple Angles", use_container_width=True)
+            
+
+
+
+
+        col1, col2 = st.columns(2)
+
+
+
+
+        image5 = Image.open("Screenshot 2025-06-24 111459.png")
+        image6 = Image.open("Screenshot 2025-06-24 111810.png")
+
+# Create two columns
+        col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+        with col1:
+         st.image(image5, caption="Marked Sponsors", use_container_width=True)
+
+# Display the second image in the second column
+        with col2:
+         st.image(image6, caption="Marked Sponsors", use_container_width=True)
+
+
+
+
+        image7 = Image.open("Screenshot 2025-06-24 122233.png")
+        image8 = Image.open("Screenshot 2025-06-24 122343.png")
+
+# Create two columns
+        col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+        with col1:
+         st.image(image7, caption="Front & Back Banners", use_container_width=True)
+
+# Display the second image in the second column
+        with col2:
+         st.image(image8, caption="Seats", use_container_width=True)
+
+
+
+
+        image9 = Image.open("b1.jpg")
+        image10 = Image.open("b2.jpg")
+
+# Create two columns
+        col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+        with col1:
+         st.image(image9, caption="Brightness Adjustments", use_container_width=True)
+
+# Display the second image in the second column
+        with col2:
+         st.image(image10, caption="Brightness Adjustments", use_container_width=True)
+
+
+
+
+
+
     st.subheader("Fairplay Moments Detection")
     with st.container():
         with st.expander("We made a system that can spot good sportsmanship moments in cricket, like handshakes or helping another player. These moments are useful for sponsors to show their ads in a positive light.", expanded=True):
