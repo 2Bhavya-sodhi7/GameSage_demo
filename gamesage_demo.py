@@ -17,6 +17,8 @@ from PIL import Image
 from wordcloud import WordCloud
 from textblob import TextBlob
 from matplotlib.patches import Wedge
+from scipy.signal import find_peaks
+
 import matplotlib.patches as patches
 base_theme = st.get_option("theme.base")
 TEXT_COLOR = "#FFFFFF" if base_theme == "dark" else "#FFFFFF"
@@ -145,10 +147,12 @@ def load_data():
     df1 = pd.read_csv("cricket_shots.csv")
     df2 = pd.read_csv("IPL2k24_tweets_data.csv")
     df3 = pd.read_csv("stadium_boundaries.csv")
-    return sponsor_df, audio_df, df1, df2, df3
+    df4 = pd.read_csv("engagement_peaks.csv")
+    df6 = pd.read_csv("clean_tweet.csv")  
+    return sponsor_df, audio_df, df1, df2, df3, df4, df6
 
 try:
-    sponsor_df, audio_df, df1, df2, df3 = load_data()
+    sponsor_df, audio_df, df1, df2, df3, df4, df6 = load_data()
 except Exception as e:
     st.error(f"Error loading data: {e}")
 
@@ -660,53 +664,352 @@ elif selected == "Summary":
         with st.expander("We made a system that can spot good sportsmanship moments in cricket, like handshakes or helping another player. These moments are useful for sponsors to show their ads in a positive light.", expanded=True):
             img = Image.open("Screenshot_4K (2).png")
             st.image(img, width=img.width)
+                    
+                    
+            image1 = Image.open("handshake4.jpg")
+            image2 = Image.open("hug3.jpg")        
+            col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+            with col1:
+             st.image(image1, caption="Labeled Images with Handshakes", use_container_width=True)
+
+# Display the second image in the second column
+            with col2:
+                st.image(image2, caption="Labeled Images with Hugs", use_container_width=True)
+
             
+
+                    
+            image3 = Image.open("image_search_1750792837020.jpg")
+            image4 = Image.open("normal20.jpg")        
+            col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+            with col1:
+             st.image(image3, caption="Labeled Images with Helping Moments", use_container_width=True)
+
+# Display the second image in the second column
+            with col2:
+                st.image(image4, caption="Labeled Images with Normal Moments", use_container_width=True)
+
+
+
+
+            image5 = Image.open("Screenshot 2025-06-25 010127.png")
+            st.image(image5, caption="Extracted body poses for action recognition.", use_container_width=True)
+
+
+
+
+
+
+
+
+
+
+
     st.subheader("Fan Engagement Peak Detection")
     with st.container():
         with st.expander("We used an existing system to detect the most exciting moments in cricket match videos by analyzing crowd sounds.", expanded=True):
             img = Image.open("final_audio_map.png")
             st.image(img, width=img.width)
 
+
+
+            st.caption("Extracted IPL Videos")
+            st.video("clip.mp4")
+            
+            st.caption("Extracted Audio From The IPL Videos")
+
+            audio_file = open('output_audio.wav', 'rb')
+            st.audio(audio_file, format='audio/wav')
+
+            st.caption("Found Engagement Peaks")
+            st.dataframe(df4, use_container_width=True)
+            
+            st.caption("Plotted Excitement Graph and Then Marked Peaks on it.")
+
+            peaks, _ = find_peaks(df4["audio_peak_score"], prominence=0.01)
+
+            fig, ax = plt.subplots()
+
+# Plot the main excitement curve
+            ax.plot(df4["timestamp_sec"], df4["audio_peak_score"], label="Excitement Score", color="hotpink")
+
+# Mark peaks on the graph
+            ax.scatter(
+            df4["timestamp_sec"].iloc[peaks],
+            df4["audio_peak_score"].iloc[peaks],
+            color="red",
+            s=80,
+            label="Peaks"
+            )
+
+            ax.set_xlabel("Time (s)")
+            ax.set_ylabel("Excitement Score")
+            ax.set_title("Excitement Over Time")
+            ax.legend()
+
+            st.pyplot(fig)
+
+
+
+
+            st.caption("Then Detected the Sponsors At the Peak Moments Using The Below Model That We Trained.")
+            image7 = Image.open("val_batch0_labels.jpg")
+            st.image(image7, caption="Sponsor's Detected", use_container_width=True)
+
+
+
+
+
+
     st.subheader("Sponsor Detection From Images And Video Frames")
     with st.container():
         with st.expander("We found the most exciting moments in IPL match videos using crowd sounds, then used computer vision to detect which sponsors appeared on screen during those moments. This helps brands understand where their logos are seen when fans are most engaged.", expanded=True):
             img = Image.open("final_sponsor_detection_map.png")
             st.image(img, width=img.width)
+
+
+            image1 = Image.open("image_37_c0ce8732-42a6-414e-9ac0-7b6325011634.jpg")
+            image2 = Image.open("image_39_4bfa6842-f74c-4f5a-99b2-7bd5e51e698d.jpg")        
+            col1, col2 = st.columns(2)
+
+# Display the first image in the first column
+            with col1:
+             st.image(image1, caption="Extracted Images from Peak Frames and Various Sources", use_container_width=True)
+
+# Display the second image in the second column
+            with col2:
+                st.image(image2, caption="Extracted Images from Peak Frames and Various Sources", use_container_width=True)
+
+            image3 = Image.open("image_93_ba30d224-1f30-4357-b05e-de1faa8e607a.jpg")
+            image4 = Image.open("image_162_05ee7c21-a8d4-4a5f-be12-2413c03c6838.jpg")        
+            col1, col2 = st.columns(2)                  
+
+
+            with col1:
+             st.image(image3, caption="Extracted Images from Peak Frames and Various Sources", use_container_width=True)
+
+# Display the second image in the second column
+            with col2:
+                st.image(image4, caption="Extracted Images from Peak Frames and Various Sources", use_container_width=True)
+
+
+
+            image5 = Image.open("train_batch2.jpg")
+            image6 = Image.open("train_batch200.jpg")        
+            col1, col2 = st.columns(2)                  
+
+
+            with col1:
+             st.image(image5, caption="Labeled Images With The Following Labels", use_container_width=True)
+
+# Display the second image in the second column
+            with col2:
+                st.image(image6, caption="Labeled Images With The Following Labels", use_container_width=True)
+
+
+
+        
+
+            labels = [
+   
+"Acko_helmet_logo_clear",
+"Acko_helmet_logo_partially_visible",
+"Acko_helmet_logo_blurry",
+"Acko_helmet_logo_obstructed",
+"Acko_cap_logo_clear",
+"Acko_cap_logo_partially_visible",
+"Acko_cap_logo_blurry",
+"Acko_cap_logo_obstructed",
+"AllSeasons_jersey_chest_logo_clear",
+"AllSeasons_jersey_chest_logo_partially_visible",
+"AllSeasons_jersey_chest_logo_blurry",
+"AllSeasons_jersey_chest_logo_obstructed",
+"AstralPipes_jersey_shoulder_logo_clear",
+"AstralPipes_jersey_shoulder_logo_partially_visible",
+"AstralPipes_jersey_shoulder_logo_blurry",
+"AstralPipes_jersey_shoulder_logo_obstructed",
+"AvonCycles_trousers_logo_clear",
+"AvonCycles_trousers_logo_partially_visible",
+"AvonCycles_trousers_logo_blurry",
+"AvonCycles_trousers_logo_obstructed",
+"BKT_jersey_back_logo_clear",
+"BKT_jersey_back_logo_partially_visible",
+"BKT_jersey_back_logo_blurry",
+"BKT_jersey_back_logo_obstructed",
+"BKT_boundary_rope_clear",
+"BKT_boundary_rope_partially_visible",
+"BKT_boundary_rope_blurry",
+"BKT_boundary_rope_obstructed",
+"Dazzler_cheerleader_top_logo_clear",
+"Dazzler_cheerleader_top_logo_partially_visible",
+"Dazzler_cheerleader_top_logo_blurry",
+"Dazzler_cheerleader_top_logo_obstructed",
+"Dazzler_cheerleader_skirt_logo_clear",
+"Dazzler_cheerleader_skirt_logo_partially_visible",
+"Dazzler_cheerleader_skirt_logo_blurry",
+"Dazzler_cheerleader_skirt_logo_obstructed",
+"Dazzler_foreground_banner_clear",
+"Dazzler_foreground_banner_partially_visible",
+"Dazzler_foreground_banner_blurry",
+"Dazzler_foreground_banner_obstructed",
+"DPWorld_jersey_back_logo_clear",
+"DPWorld_jersey_back_logo_partially_visible",
+"DPWorld_jersey_back_logo_blurry",
+"DPWorld_jersey_back_logo_obstructed",
+"DPWorld_helmet_logo_clear",
+"DPWorld_helmet_logo_partially_visible",
+"DPWorld_helmet_logo_blurry",
+"DPWorld_helmet_logo_obstructed",
+"Dream11_jersey_chest_logo_clear",
+"Dream11_jersey_chest_logo_partially_visible",
+"Dream11_jersey_chest_logo_blurry",
+"Dream11_jersey_chest_logo_obstructed",
+"EcoLink_cap_logo_clear",
+"EcoLink_cap_logo_partially_visible",
+"EcoLink_cap_logo_blurry",
+"EcoLink_cap_logo_obstructed",
+"EcoLink_helmet_back_logo_clear",
+"EcoLink_helmet_back_logo_partially_visible",
+"EcoLink_helmet_back_logo_blurry",
+"EcoLink_helmet_back_logo_obstructed",
+"Encalm_trousers_logo_clear",
+"Encalm_trousers_logo_partially_visible",
+"Encalm_trousers_logo_blurry",
+"Encalm_trousers_logo_obstructed",
+"Equitas_helmet_logo_clear",
+"Equitas_helmet_logo_partially_visible",
+"Equitas_helmet_logo_blurry",
+"Equitas_helmet_logo_obstructed",
+"Freemans_cap_logo_clear",
+"Freemans_cap_logo_partially_visible",
+"Freemans_cap_logo_blurry",
+"Freemans_cap_logo_obstructed",
+"GMR_jersey_sleeve_logo_clear",
+"GMR_jersey_sleeve_logo_partially_visible",
+"GMR_jersey_sleeve_logo_blurry",
+"GMR_jersey_sleeve_logo_obstructed",
+"GMR_jersey_chest_logo_clear",
+"GMR_jersey_chest_logo_partially_visible",
+"GMR_jersey_chest_logo_blurry",
+"GMR_jersey_chest_logo_obstructed",
+"GMR_helmet_logo_clear",
+"GMR_helmet_logo_partially_visible",
+"GMR_helmet_logo_blurry",
+"GMR_helmet_logo_obstructed",
+"HeroFincorp_jersey_chest_logo_clear",
+"HeroFincorp_jersey_chest_logo_partially_visible",
+"HeroFincorp_jersey_chest_logo_blurry",
+"HeroFincorp_jersey_chest_logo_obstructed",
+"HeroFincorp_jersey_sleeve_logo_clear",
+"HeroFincorp_jersey_sleeve_logo_partially_visible",
+"HeroFincorp_jersey_sleeve_logo_blurry",
+"HeroFincorp_jersey_sleeve_logo_obstructed",
+"HeroFincorp_helmet_logo_clear",
+"HeroFincorp_helmet_logo_partially_visible",
+"HeroFincorp_helmet_logo_blurry",
+"HeroFincorp_helmet_logo_obstructed",
+"Jio_jersey_shoulder_logo_clear",
+"Jio_jersey_shoulder_logo_partially_visible",
+"Jio_jersey_shoulder_logo_blurry",
+"Jio_jersey_shoulder_logo_obstructed",
+"Jio_cap_logo_clear",
+"Jio_cap_logo_partially_visible",
+"Jio_cap_logo_blurry",
+"Jio_cap_logo_obstructed",
+"JioHotstar_clear",
+"JioHotstar_partially_visible",
+"JioHotstar_blurry",
+"JioHotstar_obstructed",
+"JSWPaints_helmet_logo_clear",
+"JSWPaints_helmet_logo_partially_visible",
+"JSWPaints_helmet_logo_blurry",
+"JSWPaints_helmet_logo_obstructed",
+"JSWPaints_cap_logo_clear",
+"JSWPaints_cap_logo_partially_visible",
+"JSWPaints_cap_logo_blurry",
+"JSWPaints_cap_logo_obstructed",
+"JSWPaints_jersey_chest_logo_clear",
+"JSWPaints_jersey_chest_logo_partially_visible",
+"JSWPaints_jersey_chest_logo_blurry",
+"JSWPaints_jersey_chest_logo_obstructed",
+"KentMineralRO_jersey_chest_logo_clear",
+"KentMineralRO_jersey_chest_logo_partially_visible",
+"KentMineralRO_jersey_chest_logo_blurry",
+"KentMineralRO_jersey_chest_logo_obstructed",
+"kshema_trousers_logo_clear",
+"kshema_trousers_logo_partially_visible",
+"kshema_trousers_logo_blurry",
+"kshema_trousers_logo_obstructed",
+"LivPure_trousers_logo_clear",
+"LivPure_trousers_logo_partially_visible",
+"LivPure_trousers_logo_blurry",
+"LivPure_trousers_logo_obstructed",
+"motorola_trousers_logo_clear",
+"motorola_trousers_logo_partially_visible",
+"motorola_trousers_logo_blurry",
+"motorola_trousers_logo_obstructed",
+"Puma_jersey_sleeve_logo_clear",
+"Puma_jersey_sleeve_logo_partially_visible",
+"Puma_jersey_sleeve_logo_blurry",
+"Puma_jersey_sleeve_logo_obstructed",
+"RayzonSolar_trousers_logo_clear",
+"RayzonSolar_trousers_logo_partially_visible",
+"RayzonSolar_trousers_logo_blurry",
+"RayzonSolar_trousers_logo_obstructed",
+"SimpoloCeramics_jersey_shoulder_logo_clear",
+"SimpoloCeramics_jersey_shoulder_logo_partially_visible",
+"SimpoloCeramics_jersey_shoulder_logo_blurry",
+"SimpoloCeramics_jersey_shoulder_logo_obstructed",
+"Spinner_Sports_Drink_clear",
+"Spinner_Sports_Drink_partially_visible",
+"Spinner_Sports_Drink_blurry",
+"Spinner_Sports_Drink_obstructed",
+"Torrent_Group_jersey_chest_logo_clear",
+"Torrent_Group_jersey_chest_logo_partially_visible",
+"Torrent_Group_jersey_chest_logo_blurry",
+"Torrent_Group_jersey_chest_logo_obstructed",
+"Valvoline_jersey_sleeve_logo_clear",
+"Valvoline_jersey_sleeve_logo_partially_visible",
+"Valvoline_jersey_sleeve_logo_blurry",
+"Valvoline_jersey_sleeve_logo_obstructed",
+"AllSeasons_jersey_sleeve_logo_clear",
+"AllSeasons_jersey_sleeve_logo_partially_visible",
+"AllSeasons_jersey_sleeve_logo_blurry",
+"AllSeasons_jersey_sleeve_logo_obstructed",
+
+]
+
+# Show total count
+    st.write(f"Total Labels: {len(labels)}")
+
+# Show in a table
+    st.dataframe({"Label": labels})
+
+
+    st.caption("Then Trained a Model to Detect the Sponsors in the Images and Video Frames.")
+    image10 = Image.open("val_batch0_pred.jpg")
+    st.image(image10, caption="Our Model Predictions", use_container_width=True)
+
             
     st.subheader("Geospatial analysis of Fan Engagement")
     with st.container():
-        with st.expander("We analyzed thousands of IPL tweets and maps where cricket fans are most active. Based on this data, it created small geographic zones and gave sponsor-wise suggestions for delivery apps, local businesses, and service providers. The goal was to help brands target areas with high fan activity more effectively.", expanded=False):
-            st.markdown("""
-Mapped All Locations
-The tweets were matched with their coordinates, city, neighborhood, and more location info.
+        with st.expander("We analyzed thousands of IPL tweets and maps where cricket fans are most active. Based on this data, it created small geographic zones and gave sponsor-wise suggestions for delivery apps, local businesses, and service providers. The goal was to help brands target areas with high fan activity more effectively.", expanded=True):
+            img = Image.open("geo_map_final.png")
+            st.image(img, width=img.width)
 
-Grouped Fans into Zones
-Created small zones of fans living near each other (within 2 km). These were called delivery zones.
-
-Analyzed Each Zone
-For every zone, it calculated:
-
-Number of fans
-
-Main city/area
-
-Postal codes and neighborhoods
-
-Targeting precision: HIGH (postal code), MEDIUM (neighborhood), LOW (only area info)
-
-Generated Sponsor Insights
-Suggested which zones were best for:
-
-Food delivery apps (needs high fan count + postal codes)
-
-Local shops & cafes (needs moderate fan count)
-
-Event promotions (all zones useful)
-
-Created an Interactive Map
-Made a colorful map showing all zones, with different sizes and colors based on fan count and precision level.
-""")
-
+            st.caption("Here are Some Samples of the Tweets We Collected and Then GeoTagged Them")
+            
+            
+            st.dataframe(df6, use_container_width=True)
+            st.caption("Then We Created a Map of IPL Fans' Locations and Engagement Hotspots")
+            image13 = Image.open("Screenshot 2025-06-25 092720.png")
+            st.image(image13, caption="", use_container_width=True)
+            image14 = Image.open("Screenshot 2025-06-25 103201.png")
+            st.image(image14, caption="", use_container_width=True)
 # =========================================================
 # End of script
 # =========================================================
