@@ -8,3 +8,4 @@ Pillow
 wordcloud
 textblob
 streamlit-lottie
+scipy
