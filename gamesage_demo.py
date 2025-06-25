@@ -37,6 +37,40 @@ def safe_rerun():
     
     else:
         st.info("Unlocked! Try refreshing the page ")
+hide_streamlit_style = """
+<style>
+/* Top right menu/toolbar ko hide karein */
+div[data-testid="stToolbar"] {
+  visibility: hidden;
+  height: 0%;
+  position: fixed;
+}
+div[data-testid="stDecoration"] {
+  visibility: hidden;
+  height: 0%;
+  position: fixed;
+}
+/* Neeche ke 'Made with Streamlit' footer aur crown icon ko hide karein */
+div[data-testid="stStatusWidget"] {
+  visibility: hidden;
+  height: 0%;
+  position: fixed;
+}
+#MainMenu {
+  visibility: hidden;
+  height: 0%;
+}
+header {
+  visibility: hidden;
+  height: 0%;
+}
+footer {
+  visibility: hidden;
+  height: 0%;
+}
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 def set_background(image_file):
     with open(image_file, "rb") as f:
