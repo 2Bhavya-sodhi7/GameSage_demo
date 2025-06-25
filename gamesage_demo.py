@@ -10,6 +10,7 @@ from streamlit_option_menu import option_menu
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import base64
 import streamlit.components.v1 as components
 import numpy as np
 from collections import Counter
@@ -37,7 +38,36 @@ def safe_rerun():
     else:
         st.info("Unlocked! Try refreshing the page ")
 
+def set_background(image_file):
+    with open(image_file, "rb") as f:
+        data = f.read()
+    encoded = base64.b64encode(data).decode()
+    css = f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+        background-image: url("data:image/png;base64,{encoded}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }}
 
+    [data-testid="stHeader"] {{
+        background: rgba(0,0,0,0);
+    }}
+
+    [data-testid="stToolbar"] {{
+        right: 2rem;
+        top: 2rem;
+    }}
+
+    /* Optional: make text white for better contrast */
+    h1, h2, h3, h4, h5, h6, p, div, span {{
+        color: white !important;
+    }}
+    </style>
+    """
+    st.markdown(css, unsafe_allow_html=True)
 # NEW – Lottie support
 from streamlit_lottie import st_lottie
 import json, requests
@@ -118,7 +148,7 @@ selected = option_menu(
         "nav-link-selected": {"background-color": "#b31010", "color": "#FFFFFF"},
     }
 )
-
+set_background("final_bg_try.png")
 st.markdown(
     """
     <style>
