@@ -37,40 +37,6 @@ def safe_rerun():
     
     else:
         st.info("Unlocked! Try refreshing the page ")
-hide_streamlit_style = """
-<style>
-/* Top right menu/toolbar ko hide karein */
-div[data-testid="stToolbar"] {
-  visibility: hidden;
-  height: 0%;
-  position: fixed;
-}
-div[data-testid="stDecoration"] {
-  visibility: hidden;
-  height: 0%;
-  position: fixed;
-}
-/* Neeche ke 'Made with Streamlit' footer aur crown icon ko hide karein */
-div[data-testid="stStatusWidget"] {
-  visibility: hidden;
-  height: 0%;
-  position: fixed;
-}
-#MainMenu {
-  visibility: hidden;
-  height: 0%;
-}
-header {
-  visibility: hidden;
-  height: 0%;
-}
-footer {
-  visibility: hidden;
-  height: 0%;
-}
-</style>
-"""
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 def set_background(image_file):
     with open(image_file, "rb") as f:
@@ -126,27 +92,6 @@ def load_lottie(url: str):
     except Exception as e:
         st.warning(f"Failed to load Lottie animation: {e}")
     return None
-
-# Use a working Lottie JSON URL
-ARROW = load_lottie("https://lottie.host/ab24ce1c-6e60-4c55-9e3e-fba77729ae19/qD8Ogwhw0w.json")
-DATASET_ANIM = load_lottie(        # NEW – dataset page icon
-    "https://lottie.host/752058be-30c2-4f90-8d07-40899c8005a3/Sf95jOePWK.json")  
-
-
-# Bullet function with error handling
-def bullet(text: str):
-    col_icon, col_txt = st.columns([2, 25])
-    with col_icon:
-        if ARROW is not None:
-            st_lottie(ARROW, width=40, height=40, key=text)
-        else:
-            st.write("→")  # Fallback to text arrow
-    with col_txt:
-        st.subheader(text)
-
-
-
-
 
 
 menu_styles = {
@@ -323,103 +268,176 @@ elif selected == "Visual Analysis":
             st.markdown("""
 The graphs show spikes in tweet views and activity during key IPL 2024 moments. Higher peaks reflect viral tweets and major fan engagement days.
 """)
-    
-    df2["tweet_created_at"] = pd.to_datetime(df2["tweet_created_at"])
-    df2["time_rounded"] = df2["tweet_created_at"].dt.floor("T")
-    view_over_time = df2.groupby("time_rounded")["tweet_view_count"].sum().reset_index()       
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.plot(view_over_time["time_rounded"], view_over_time["tweet_view_count"], color=COLOR_PALETTE[3], marker="o")
-    ax.set_xlabel("Time")
-    ax.set_ylabel("Total Views")
-    ax.set_title("Tweet Views Over Time")
-    ax.grid(True)
-    st.pyplot(fig)
-
-    df2["tweet_created_at"] = pd.to_datetime(df2["tweet_created_at"])
-    retweet_trend = df2.groupby(df2["tweet_created_at"].dt.date)["tweet_retweet_count"].sum()
-    st.line_chart(retweet_trend)
-
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        df2["tweet_created_at"] = pd.to_datetime(df2["tweet_created_at"])
+        df2["time_rounded"] = df2["tweet_created_at"].dt.floor("T")
+        view_over_time = df2.groupby("time_rounded")["tweet_view_count"].sum().reset_index()       
+        fig, ax = plt.subplots(figsize=(10, 4))
+        ax.plot(view_over_time["time_rounded"], view_over_time["tweet_view_count"], color=COLOR_PALETTE[3], marker="o")
+        ax.set_xlabel("Time")
+        ax.set_ylabel("Total Views")
+        ax.set_title("Tweet Views Over Time")
+        ax.grid(True)
+        st.pyplot(fig)
+        st.caption("Total views recorded between March and May 2024")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        df2["tweet_created_at"] = pd.to_datetime(df2["tweet_created_at"])
+        retweet_trend = df2.groupby(df2["tweet_created_at"].dt.date)["tweet_retweet_count"].sum()
+        st.line_chart(retweet_trend)
+        st.caption("Viral moments and key matches drove a surge in Twitter activity.")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
     with st.container():
         with st.expander("From Audio Peak Dataset (Missed Branding Opportunities)", expanded=True):
             st.markdown("""
 The visuals show that sponsor visibility peaks at specific match moments, often aligning with high audio excitement. Most audio peaks cluster around a narrow score range, and sponsors like Dream11 and Kent were frequently visible during these engaging moments.
 """)
-            
-    sponsor_count_df = audio_df[["TimestampFrameNumber", "VisibleSponsorsDuringPeak"]].copy()
-    sponsor_count_df["SponsorList"] = sponsor_count_df["VisibleSponsorsDuringPeak"].str.split(", ")
-    sponsor_count_df["SponsorCount"] = sponsor_count_df["SponsorList"].apply(
-        lambda x: 0 if x == ["NoSponsorDetected"] else len(x)
-    )
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        
+        sponsor_count_df = audio_df[["TimestampFrameNumber", "VisibleSponsorsDuringPeak"]].copy()
+        sponsor_count_df["SponsorList"] = sponsor_count_df["VisibleSponsorsDuringPeak"].str.split(", ")
+        sponsor_count_df["SponsorCount"] = sponsor_count_df["SponsorList"].apply(
+            lambda x: 0 if x == ["NoSponsorDetected"] else len(x)
+        )
 
-    # Filter for moments where at least 1 sponsor was visible
-    filtered_df = sponsor_count_df[sponsor_count_df["SponsorCount"] > 0]
+        # Filter for moments where at least 1 sponsor was visible
+        filtered_df = sponsor_count_df[sponsor_count_df["SponsorCount"] > 0]
 
-    # Bubble chart: Timestamp vs. SponsorCount (size = count)
-    st.subheader("Sponsor Count at Key Match Moments")
-    fig_bubble, ax_bubble = plt.subplots(figsize=(10, 4))
-    ax_bubble.scatter(
-        filtered_df["TimestampFrameNumber"],
-        filtered_df["SponsorCount"],
-        s=filtered_df["SponsorCount"] * 50,  # scale bubble size
-        alpha=0.6,
-        color=COLOR_PALETTE[4]
-    )
-    ax_bubble.set_xlabel("Timestamp (Frame Number)")
-    ax_bubble.set_ylabel("Sponsor Count")
-    ax_bubble.set_title("Number of Sponsors Visible at Key Match Moments")
-    st.pyplot(fig_bubble)
+        # Bubble chart: Timestamp vs. SponsorCount (size = count)
+        st.subheader("Sponsor Count at Key Match Moments")
+        fig_bubble, ax_bubble = plt.subplots(figsize=(10, 4))
+        ax_bubble.scatter(
+            filtered_df["TimestampFrameNumber"],
+            filtered_df["SponsorCount"],
+            s=filtered_df["SponsorCount"] * 50,  # scale bubble size
+            alpha=0.6,
+            color=COLOR_PALETTE[4]
+        )
+        ax_bubble.set_xlabel("Timestamp (Frame Number)")
+        ax_bubble.set_ylabel("Sponsor Count")
+        ax_bubble.set_title("Number of Sponsors Visible at Key Match Moments")
+        st.pyplot(fig_bubble)
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        col5, col6 = st.columns(2)
 
-    col5, col6 = st.columns(2)
-
-    with col5:
-        st.subheader("Audio Peak Score Distribution")
-        fig_peak, ax_peak = plt.subplots()
-        sns.histplot(audio_df["AudioPeakScore"], bins=20, kde=True, color=COLOR_PALETTE[4], ax=ax_peak)
-        ax_peak.set_xlabel("AudioPeakScore")
-        st.pyplot(fig_peak)
-
-    with col6:
-        st.subheader("Sponsors Detected at Audio Peaks")
-        exploded = audio_df["VisibleSponsorsDuringPeak"].str.split(", ").explode()
-        peak_counts = exploded.value_counts().drop("NoSponsorDetected", errors="ignore")
-        st.bar_chart(peak_counts,color=COLOR_PALETTE[4])
-
+        with col5:
+            st.subheader("Audio Peak Score Distribution")
+            fig_peak, ax_peak = plt.subplots()
+            sns.histplot(audio_df["AudioPeakScore"], bins=20, kde=True, color=COLOR_PALETTE[4], ax=ax_peak)
+            ax_peak.set_xlabel("AudioPeakScore")
+            st.pyplot(fig_peak)
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+        
+        with col6:
+            st.subheader("Sponsors Detected at Audio Peaks")
+            exploded = audio_df["VisibleSponsorsDuringPeak"].str.split(", ").explode()
+            peak_counts = exploded.value_counts().drop("NoSponsorDetected", errors="ignore")
+            st.bar_chart(peak_counts,color=COLOR_PALETTE[4])
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
     with st.container():
         with st.expander("From Sponsor Detection Dataset (Missed Branding Opportunities)", expanded=True):
             st.markdown("""
 This sponsor visibility analysis in cricket match frames. The bar charts highlight top sponsor appearances and where they were seen (like on jerseys or trousers).
 """)
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
 
-    col1, col2 = st.columns(2)
+        col1, col2 = st.columns(2)
 
-    with col1:
-        st.subheader("Sponsor-wise Asset Count")
-        sponsor_counts = sponsor_df["sponsor_name"].value_counts()
-        st.bar_chart(sponsor_counts)
+        with col1:
+            st.subheader("Sponsor-wise Asset Count")
+            sponsor_counts = sponsor_df["sponsor_name"].value_counts()
+            st.bar_chart(sponsor_counts)
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
 
-    with col2:
-        st.subheader("Asset Type Distribution")
-        asset_counts = sponsor_df["sponsor_asset_type"].value_counts()
-        st.bar_chart(asset_counts)
-
-    st.subheader("Visibility Breakdown")
-    fig_vis, ax_vis = plt.subplots()
-    vis_counts = sponsor_df["sponsor_asset_visibility"].value_counts()
-    PIE_COLORS = ["#60988C", 
-    "#E3D19F", # Teal
-    "#4E5D75",  # Muted Navy
-    "#5C8DF6",  # Blue
-    "#F4633A",]
-    ax_vis.pie(vis_counts, labels=vis_counts.index, autopct='%1.1f%%', startangle=90, colors=PIE_COLORS)
-    ax_vis.axis("equal")
-    st.pyplot(fig_vis)
-
+        with col2:
+            st.subheader("Asset Type Distribution")
+            asset_counts = sponsor_df["sponsor_asset_type"].value_counts()
+            st.bar_chart(asset_counts)
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+        st.subheader("Visibility Breakdown")
+        fig_vis, ax_vis = plt.subplots()
+        vis_counts = sponsor_df["sponsor_asset_visibility"].value_counts()
+        PIE_COLORS = ["#60988C", 
+        "#E3D19F", # Teal
+        "#4E5D75",  # Muted Navy
+        "#5C8DF6",  # Blue
+        "#F4633A",]
+        ax_vis.pie(vis_counts, labels=vis_counts.index, autopct='%1.1f%%', startangle=90, colors=PIE_COLORS)
+        ax_vis.axis("equal")
+        st.pyplot(fig_vis)
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
     with st.container():
         with st.expander("From RCB VS PBKS(FINAL) BALL BY BALL DATASET (Power of Prediction and Analyis)", expanded=True):
             st.markdown("""
 This chart and heatmap shows how often different cricket shot directions were played these hotspots helps predict where the ball will go, allowing for smart ad placement to get the most views.
 """)
-
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
     shot_counts = df1['shot_direction'].value_counts().sort_index()
     shot_avg_runs = df1.groupby('shot_direction')['runs'].mean().loc[shot_counts.index]
     fig, ax1 = plt.subplots(figsize=(10, 6))
@@ -524,10 +542,24 @@ This chart and heatmap shows how often different cricket shot directions were pl
         fmt='.0f',
         square=True
     )
+    st.caption("Mapping shot frequency and runs to find scoring hotspots.")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
     ax.set_title("Field-Position Heatmap of Runs")
     ax.set_xlabel("Field Position (X)")
     ax.set_ylabel("Field Position (Y)")
     st.pyplot(fig)
+    st.caption("This heatmap shows where most runs are scored based on shot direction, helping brands plan ad placements in high action areas.")
 
 # ------------------- Dataset --------------------
 elif selected == "Dataset":
@@ -536,15 +568,15 @@ elif selected == "Dataset":
         st.subheader("🔒  Protected Section")
         pwd = st.text_input("Enter dataset password", type="password")
         if st.button("Unlock"):
-            if pwd == "gamesage123":          # <-- apna secret rakhna
+            if pwd == "gamesage123":
                 st.session_state.dataset_auth = True
                 safe_rerun()
-                      # refresh to show content
+                      
             else:
                 st.error("Wrong password, try again.")
         st.stop()
 
-    # ek chhota icon + text ka 2-column layout
+    
     st.title("Here are some sample of the datasets that we created: ")
 
 
@@ -629,10 +661,18 @@ elif selected == "Summary":
         with st.expander(" A smart system that uses computer vision to finds spots in the stadium where ads are not clearly visible and helps sponsors to get the blind spots", expanded=True):
             img = Image.open("Final_blind_spots.png")
             st.image(img, width=img.width)
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+
 
             # Load your images
 # Make sure these files are in the correct path relative to your script
             image1 = Image.open("frame_13_47s.jpg")
+            
             image2 = Image.open("frame_66_256s.jpg")
 
 # Create two columns
@@ -649,7 +689,13 @@ elif selected == "Summary":
 
             image3 = Image.open("frame_17_64s.jpg")
             image4 = Image.open("frame_18_68s.jpg")
-
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            
 # Create two columns
             col1, col2 = st.columns(2)
 
@@ -672,7 +718,12 @@ elif selected == "Summary":
 
         image5 = Image.open("Screenshot 2025-06-24 111459.png")
         image6 = Image.open("Screenshot 2025-06-24 111810.png")
-
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
 # Create two columns
         col1, col2 = st.columns(2)
 
@@ -689,7 +740,12 @@ elif selected == "Summary":
 
         image7 = Image.open("Screenshot 2025-06-24 122233.png")
         image8 = Image.open("Screenshot 2025-06-24 122343.png")
-
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
 # Create two columns
         col1, col2 = st.columns(2)
 
@@ -706,7 +762,12 @@ elif selected == "Summary":
 
         image9 = Image.open("b1.jpg")
         image10 = Image.open("b2.jpg")
-
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
 # Create two columns
         col1, col2 = st.columns(2)
 
@@ -722,13 +783,21 @@ elif selected == "Summary":
 
 
 
-
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
     st.subheader("Fairplay Moments Detection")
     with st.container():
         with st.expander("We made a system that can spot good sportsmanship moments in cricket, like handshakes or helping another player. These moments are useful for sponsors to show their ads in a positive light.", expanded=True):
             img = Image.open("Screenshot_4K (2).png")
             st.image(img, width=img.width)
-                    
+            st.write("")
+            st.write("")  
+            st.write("")
+            st.write("")         
                     
             image1 = Image.open("handshake4.jpg")
             image2 = Image.open("hug3.jpg")        
@@ -759,7 +828,12 @@ elif selected == "Summary":
 
 
 
-
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
             image5 = Image.open("Screenshot 2025-06-25 010127.png")
             st.image(image5, caption="Extracted body poses for action recognition.", use_container_width=True)
 
@@ -772,7 +846,10 @@ elif selected == "Summary":
 
 
 
-
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
     st.subheader("Fan Engagement Peak Detection")
     with st.container():
         with st.expander("We used an existing system to detect the most exciting moments in cricket match videos by analyzing crowd sounds.", expanded=True):
@@ -780,7 +857,10 @@ elif selected == "Summary":
             st.image(img, width=img.width)
 
 
-
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
             st.caption("Extracted IPL Videos")
             st.video("clip.mp4")
             
@@ -788,10 +868,15 @@ elif selected == "Summary":
 
             audio_file = open('output_audio.wav', 'rb')
             st.audio(audio_file, format='audio/wav')
-
+            st.write("")
+            st.write("")   
+            st.write("")
+            st.write("")
             st.caption("Found Engagement Peaks")
             st.dataframe(df4, use_container_width=True)
-            
+            st.write("")
+            st.write("")
+            st.write("")
             st.caption("Plotted Excitement Graph and Then Marked Peaks on it.")
 
             peaks, _ = find_peaks(df4["audio_peak_score"], prominence=0.01)
@@ -819,7 +904,9 @@ elif selected == "Summary":
 
 
 
-
+            st.write("")            
+            st.write("")    
+            st.write("")
             st.caption("Then Detected the Sponsors At the Peak Moments Using The Below Model That We Trained.")
             image7 = Image.open("val_batch0_labels.jpg")
             st.image(image7, caption="Sponsor's Detected", use_container_width=True)
@@ -828,14 +915,22 @@ elif selected == "Summary":
 
 
 
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
 
     st.subheader("Sponsor Detection From Images And Video Frames")
     with st.container():
         with st.expander("We found the most exciting moments in IPL match videos using crowd sounds, then used computer vision to detect which sponsors appeared on screen during those moments. This helps brands understand where their logos are seen when fans are most engaged.", expanded=True):
             img = Image.open("final_sponsor_detection_map.png")
             st.image(img, width=img.width)
-
-
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
             image1 = Image.open("image_37_c0ce8732-42a6-414e-9ac0-7b6325011634.jpg")
             image2 = Image.open("image_39_4bfa6842-f74c-4f5a-99b2-7bd5e51e698d.jpg")        
             col1, col2 = st.columns(2)
@@ -861,7 +956,10 @@ elif selected == "Summary":
                 st.image(image4, caption="Extracted Images from Peak Frames and Various Sources", use_container_width=True)
 
 
-
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
             image5 = Image.open("train_batch2.jpg")
             image6 = Image.open("train_batch200.jpg")        
             col1, col2 = st.columns(2)                  
@@ -1046,32 +1144,58 @@ elif selected == "Summary":
 "AllSeasons_jersey_sleeve_logo_obstructed",
 
 ]
-
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
 # Show total count
     st.write(f"Total Labels: {len(labels)}")
 
 # Show in a table
     st.dataframe({"Label": labels})
 
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
+    st.write("")
 
     st.caption("Then Trained a Model to Detect the Sponsors in the Images and Video Frames.")
     image10 = Image.open("val_batch0_pred.jpg")
     st.image(image10, caption="Our Model Predictions", use_container_width=True)
 
-            
+    st.write("")
+    st.write("")        
+    st.write("")
+    st.write("")
+    st.write("")
     st.subheader("Geospatial analysis of Fan Engagement")
     with st.container():
         with st.expander("We analyzed thousands of IPL tweets and maps where cricket fans are most active. Based on this data, it created small geographic zones and gave sponsor-wise suggestions for delivery apps, local businesses, and service providers. The goal was to help brands target areas with high fan activity more effectively.", expanded=True):
             img = Image.open("geo_map_final.png")
             st.image(img, width=img.width)
-
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
             st.caption("Here are Some Samples of the Tweets We Collected and Then GeoTagged Them")
             
             
             st.dataframe(df6, use_container_width=True)
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
             st.caption("Then We Created a Map of IPL Fans' Locations and Engagement Hotspots")
             image13 = Image.open("Screenshot 2025-06-25 092720.png")
             st.image(image13, caption="", use_container_width=True)
+            st.write("")
+            st.write("")
+            st.write("")
+            st.write("")
             image14 = Image.open("Screenshot 2025-06-25 103201.png")
             st.image(image14, caption="", use_container_width=True)
 # =========================================================
