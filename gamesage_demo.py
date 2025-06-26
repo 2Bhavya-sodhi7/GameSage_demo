@@ -181,7 +181,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            What We Offer  <span style='color:red;'>⇓</span>
+            What We Offer  <span style='color:white;'>⇓</span>
          </h1>
          """,
         unsafe_allow_html=True  
