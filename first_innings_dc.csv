@@ -1,0 +1,125 @@
+over,ball,runs,extra,bowler,batsman,shot_direction
+19,6,0,,Mohammed Siraj,K L Rahul,No Shot
+19,5,1,,Mohammed Siraj,Tristan Stubbs,Lofted Off Drive
+19,4,6,,Mohammed Siraj,Tristan Stubbs,Pull Shot
+19,3,1,,Mohammed Siraj,K L Rahul,Deep Forward Square Leg
+19,2,4,,Mohammed Siraj,K L Rahul,Mid-Off and Extra Cover
+19,1,4,,Mohammed Siraj,K L Rahul,Deep Fine Leg
+18,6,2,,Prasidh Krishna,Tristan Stubbs,Wide Long-On
+18,5,1,,Prasidh Krishna,K L Rahul,Mid-Off
+18,4,4,,Prasidh Krishna,K L Rahul,Deep Midwicket
+18,3,0,,Prasidh Krishna,K L Rahul,No Shot
+18,2,6,,Prasidh Krishna,K L Rahul,Long-Off
+18,1,1,,Prasidh Krishna,Tristan Stubbs,Deep Covers
+17,6,1,,Sai Kishore,Tristan Stubbs,Pull Shot
+17,5,6,,Sai Kishore,Tristan Stubbs,Deep Square Leg
+17,4,1,,Sai Kishore,K L Rahul,Deep Forward Point
+17,3,1,,Sai Kishore,Tristan Stubbs,Cover Drive
+17,2,1,,Sai Kishore,K L Rahul,Wide Long-Off
+17,1,1,,Sai Kishore,Tristan Stubbs,Wide Long-Off
+16,6,1,,Prasidh Krishna,Tristan Stubbs,Mid-Wicket
+16,5,1,LB,Prasidh Krishna,K L Rahul,Leg Glance
+16,4,4,,Prasidh Krishna,K L Rahul,Short Fine Leg
+16,3,1,,Prasidh Krishna,Tristan Stubbs,Square Fine Leg
+16,2,W,,Prasidh Krishna,Axar Patel,Caught at Mid-Wicket
+16,1,0,,Prasidh Krishna,Axar Patel,No Run
+15,6,1,,Sai Kishore,Axar Patel,Pull Shot
+15,5,6,,Sai Kishore,Axar Patel,Long-Off
+15,4,2,,Sai Kishore,Axar Patel,Pull Shot
+15,3,2,,Sai Kishore,Axar Patel,Country
+15,2,0,,Sai Kishore,Axar Patel,Beaten
+15,1,4,,Sai Kishore,Axar Patel,Straight
+14,6,1,,Rashid Khan,Axar Patel,Lofted Off Drive
+14,5,4,,Rashid Khan,Axar Patel,Deep Backward Square Leg
+14,4,2,,Rashid Khan,Axar Patel,Lofted Off Drive
+14,3,1,,Rashid Khan,K L Rahul,Forward Point
+14,2,1,,Rashid Khan,Axar Patel,Front Foot Flick
+14,1,1,,Rashid Khan,K L Rahul,Deep Covers
+13,6,0,,Sai Kishore,Axar Patel,Short Fine Leg
+13,5,0,,Sai Kishore,Axar Patel,No Run
+13,4,1,,Sai Kishore,K L Rahul,Forward Square Leg
+13,3,4,,Sai Kishore,K L Rahul,Slip
+13,2,4,,Sai Kishore,K L Rahul,Cow Corner
+13,1,4,,Sai Kishore,K L Rahul,Down the ground
+12,6,1,,Rashid Khan,K L Rahul,Deep Square Leg
+12,5,1,,Rashid Khan,Axar Patel,Long-On
+12,4,1,,Rashid Khan,K L Rahul,Push
+12,3,2,,Rashid Khan,K L Rahul,Country
+12,2,1,,Rashid Khan,Axar Patel,Deep Square Leg
+12,1,1,,Rashid Khan,K L Rahul,Mid-Wicket
+11,6,W,,Sai Kishore,Abishek Porel,Caught at Slip
+11,5,6,,Sai Kishore,Abishek Porel,Straight
+11,4,0,,Sai Kishore,Abishek Porel,Beaten
+11,3,1,,Sai Kishore,K L Rahul,Cover Point
+11,2,0,,Sai Kishore,K L Rahul,Point
+11,1,1,,Sai Kishore,Abishek Porel,Point
+10,6,2,,Kagiso Rabada,K L Rahul,Country
+10,5,1,,Kagiso Rabada,Abishek Porel,Backward Point
+10,4,1,,Kagiso Rabada,K L Rahul,Push
+10,3,6,,Kagiso Rabada,K L Rahul,Straight
+10,2,1,,Kagiso Rabada,Abishek Porel,Mid-Off
+10,1,6,,Kagiso Rabada,Abishek Porel,Backward Square
+9,6,0,,Rashid Khan,K L Rahul,No Run
+9,5,4,,Rashid Khan,K L Rahul,Slog-Sweep
+9,4,1,,Rashid Khan,Abishek Porel,Long-Off
+9,4,1,WD,Rashid Khan,Abishek Porel,Wide
+9,3,1,,Rashid Khan,K L Rahul,Country
+9,2,4,,Rashid Khan,K L Rahul,Deep Mid-Wicket
+9,1,0,,Rashid Khan,K L Rahul,Backward Point
+8,6,6,,Prasidh Krishna,Abishek Porel,Long-On
+8,5,1,,Prasidh Krishna,K L Rahul,Wide Long-On
+8,4,2,,Prasidh Krishna,K L Rahul,Deep Mid-Wicket
+8,3,1,,Prasidh Krishna,Abishek Porel,Deep Forward Point
+8,2,4,,Prasidh Krishna,Abishek Porel,Third Man
+8,1,1,,Prasidh Krishna,K L Rahul,Deep Third Man
+7,6,1,,Rashid Khan,K L Rahul,Country
+7,5,1,,Rashid Khan,Abishek Porel,Push
+7,4,0,,Rashid Khan,Abishek Porel,No Run
+7,3,1,,Rashid Khan,K L Rahul,Country
+7,2,1,LB,Rashid Khan,Abishek Porel,Leg Glance
+7,1,1,,Rashid Khan,K L Rahul,Straight Long-On
+6,6,1,,Prasidh Krishna,K L Rahul,Long-On
+6,5,1,,Prasidh Krishna,Abishek Porel,Defensive Shot
+6,4,0,,Prasidh Krishna,Abishek Porel,Mid-Wicket
+6,3,1,,Prasidh Krishna,K L Rahul,Backward Square Leg
+6,2,2,,Prasidh Krishna,K L Rahul,Deep Mid-Wicket
+6,1,0,,Prasidh Krishna,K L Rahul,Short Extra Covers
+5,6,1,,Kagiso Rabada,K L Rahul,Deep Point
+5,5,6,,Kagiso Rabada,K L Rahul,Long Off
+5,4,4,,Kagiso Rabada,K L Rahul,Cover
+5,3,0,,Kagiso Rabada,K L Rahul,No Run
+5,2,6,,Kagiso Rabada,K L Rahul,Square Leg
+5,1,0,,Kagiso Rabada,K L Rahul,Short Mid-Wicket
+4,6,1,,Mohammed Siraj,K L Rahul,Mid-On
+4,5,0,,Mohammed Siraj,K L Rahul,Short Third Man
+4,4,0,,Mohammed Siraj,K L Rahul,Mid-On
+4,3,4,,Mohammed Siraj,K L Rahul,Mid-On
+4,2,0,,Mohammed Siraj,K L Rahul,No Run
+4,1,4,,Mohammed Siraj,K L Rahul,Backward Point
+3,6,0,,Mohd Arshad Khan,Abishek Porel,Covers
+3,5,0,,Mohd Arshad Khan,Abishek Porel,Beaten
+3,5,1,WD,Mohd Arshad Khan,Abishek Porel,Wide
+3,4,1,,Mohd Arshad Khan,K L Rahul,Mid-On
+3,3,1,,Mohd Arshad Khan,Abishek Porel,Deep Square Leg
+3,2,W,,Mohd Arshad Khan,Faf Du Plessis,Caught at Mid-On
+3,1,2,,Mohd Arshad Khan,Faf Du Plessis,Cover Drive
+2,6,0,,Mohammed Siraj,K L Rahul,Mid-Wicket
+2,5,1,,Mohammed Siraj,Faf Du Plessis,Cover Drive
+2,4,1,,Mohammed Siraj,K L Rahul,Deep Forward Square Leg
+2,3,0,,Mohammed Siraj,K L Rahul,Beaten
+2,2,0,,Mohammed Siraj,K L Rahul,Short Extra Covers
+2,1,1,,Mohammed Siraj,Faf Du Plessis,Pull Shot
+1,6,1,,Mohd Arshad Khan,Faf Du Plessis,Covers
+1,5,0,,Mohd Arshad Khan,Faf Du Plessis,No Run
+1,4,0,,Mohd Arshad Khan,Faf Du Plessis,Extra Covers
+1,3,0,,Mohd Arshad Khan,Faf Du Plessis,Extra Covers
+1,2,0,,Mohd Arshad Khan,Faf Du Plessis,Extra Covers
+1,2,1,WD,Mohd Arshad Khan,Faf Du Plessis,Wide
+1,1,0,,Mohd Arshad Khan,Faf Du Plessis,No Run
+0,6,4,,Mohammed Siraj,K L Rahul,Cover and Point
+0,5,0,,Mohammed Siraj,K L Rahul,Cover Point
+0,4,4,,Mohammed Siraj,K L Rahul,Deep Third
+0,4,1,WD,Mohammed Siraj,K L Rahul,Wide
+0,3,0,,Mohammed Siraj,K L Rahul,Short Mid-Off
+0,2,0,,Mohammed Siraj,K L Rahul,No Run
+0,1,0,,Mohammed Siraj,K L Rahul,Pitch
