@@ -172,7 +172,7 @@ if selected == "Home":
     st.markdown(
     """
     <h1 style='font-size: 2.3em; font-weight: bold;'>
-        GameSage : <span style='color:red;'>Maximizing</span> Sponsor's <span style='color:red;'>ROI</span> in Franchise Cricket
+        GameSage : <span style='color:white;'>Maximizing</span> Sponsor's <span style='color:white;'>ROI</span> in Franchise Cricket
     </h1>
     """,
     unsafe_allow_html=True
@@ -181,7 +181,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            What We Offer  <span style='color:red;'>⇓</span>
+            What We Offer  <span style='color:white;'>⇓</span>
          </h1>
          """,
         unsafe_allow_html=True  
@@ -190,7 +190,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Analysis of Sponsor Engagement & ROI Using Machine Learning and Computer Vision 
+            <span style='color:white;'>►</span> Analysis of Sponsor Engagement & ROI Using Machine Learning and Computer Vision 
          </h1>
          """,
         unsafe_allow_html=True  
@@ -199,7 +199,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Identifying Blind Spots in Sponsor Visibility During Broadcasts
+            <span style='color:white;'>►</span> Identifying Blind Spots in Sponsor Visibility During Broadcasts
          </h1>
          """,
         unsafe_allow_html=True  
@@ -208,7 +208,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Geospatial Tagging Of Fans
+            <span style='color:white;'>►</span> Geospatial Tagging Of Fans
          </h1>
          """,
         unsafe_allow_html=True  
@@ -217,7 +217,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Detecting Sponsor Logo Visibility During Peak Crowd Moments in IPL Videos by Conducting Audio Analysis and Using Computer Vision
+            <span style='color:white;'>►</span> Detecting Sponsor Logo Visibility During Peak Crowd Moments in IPL Videos by Conducting Audio Analysis and Using Computer Vision
          </h1>
          """,
         unsafe_allow_html=True  
@@ -227,7 +227,7 @@ if selected == "Home":
     st.markdown(
         """
         <h1 style='font-size: 1.5em; font-weight: bold;'>
-            <span style='color:red;'>►</span> Recommendations for Achieving Better ROI for Sponsors Through Predictive Mechanisms.
+            <span style='color:white;'>►</span> Recommendations for Achieving Better ROI for Sponsors Through Predictive Mechanisms.
          </h1>
          """,
         unsafe_allow_html=True  
